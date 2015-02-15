@@ -1,0 +1,24 @@
+<%= simple_form_for(@bit_coin, wrapper: :horizontal_form) do |f| %>
+    <div class="form-inputs">
+      <h4>Amount</h4>
+      <%= f.input :amount_usd %>
+      <%= f.input :amount_bit_coin %>
+
+      <%= f.input :balance %>
+
+      <h4>Deposit To</h4>
+      <%= f.input :wallet_address %>
+
+      <h4>Contact Me To</h4>
+      <%= f.input :user_email %>
+
+      <%= f.input :fees %>
+      <%= f.input :total_price %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, 'Deposit USD' %>
+    </div>
+    
+    <p>The payment information will be emailed to you automatically</p>
+<% end %>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Wallet address:</strong>
+  <%= @bit_coin.wallet_address %>
+</p>
+
+<p>
+  <strong>User email:</strong>
+  <%= @bit_coin.user_email %>
+</p>
+
+<p>
+  <strong>Fees:</strong>
+  <%= @bit_coin.fees %>
+</p>
+
+<p>
+  <strong>Total price:</strong>
+  <%= @bit_coin.total_price %>
+</p>
+
+<p>
+  <strong>App price:</strong>
+  <%= @bit_coin.app_price %>
+</p>
+
+<%= link_to 'Edit', edit_bit_coin_path(@bit_coin) %> |
+<%= link_to 'Back', bit_coins_path %>
