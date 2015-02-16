@@ -90,5 +90,5 @@ Rails.application.configure do
       password: 'stayaway',
       authentication: 'plain',
       enable_starttls_auto: true}
-  config.action_mailer.default_url_options = {:host => 'glacial-basin-6553.herokuapp.com'}
+  config.action_mailer.default_url_options = {:host => 'shielded-eyrie-9381.herokuapp.com'}
 end
