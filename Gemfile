@@ -4,6 +4,7 @@ gem 'rails', '4.1.2'
 
 group :development do
   gem 'mysql2'
+  gem 'letter_opener'
 end
 
 group :production do
@@ -28,5 +29,6 @@ gem 'twitter-bootstrap-rails',
     :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git',
     :branch => "bootstrap3"
 
-gem 'bitfinex', '~> 0.0.1'
+#gem 'bitfinex', '~> 0.0.1'
+gem 'bitfinex', :git => 'git://github.com/jwilkins/bitfinex.git'
 

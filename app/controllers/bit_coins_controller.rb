@@ -17,7 +17,11 @@ class BitCoinsController < ApplicationController
   def new
     @key = "GtTDzVL0hLFfsf6vjUMwNPdTkPjQRKQutdro9Dm1D76"
     @secret = "CiHfOV0YGIGscVgCsy57OqOqW1ai5yUp8KGzdoSpTfq"
-    @bit_coin = BitCoin.new
+
+    @ticker = Bitfinex.new(@key, @secret).ticker
+    @last_price = @ticker.last_price + @ticker.last_price * 0.003
+    @last_update = (Time.now - @ticker.timestamp).round(3)
+    @bit_coin = BitCoin.new(balance: 5)
   end
 
   # GET /bit_coins/1/edit
@@ -31,7 +35,7 @@ class BitCoinsController < ApplicationController
 
     respond_to do |format|
       if @bit_coin.save
-        format.html { redirect_to @bit_coin, notice: 'Bit coin was successfully created.' }
+        format.html { redirect_to new_bit_coin_path, notice: 'Transaction completed successfully.' }
         format.json { render action: 'show', status: :created, location: @bit_coin }
       else
         format.html { render action: 'new' }
@@ -72,6 +76,6 @@ class BitCoinsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def bit_coin_params
-    params.require(:bit_coin).permit(:wallet_address, :user_email, :fees, :total_price, :app_price)
+    params.require(:bit_coin).permit(:wallet_address, :user_email, :fees, :total_price, :app_price, :amount_usd, :amount_bit_coin, :balance)
   end
 end

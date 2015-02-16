@@ -79,4 +79,16 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      address: 'iqrcode.in',
+      port: 25,
+      domain: 'bitsbridge.com',
+      user_name: 'info@bitsbridge.com',
+      password: 'stayaway',
+      authentication: 'plain',
+      enable_starttls_auto: true}
+  config.action_mailer.default_url_options = {:host => 'glacial-basin-6553.herokuapp.com'}
 end

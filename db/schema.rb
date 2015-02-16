@@ -16,8 +16,7 @@ ActiveRecord::Schema.define(version: 20150215194147) do
   create_table "bit_coins", force: true do |t|
     t.string   "wallet_address"
     t.string   "user_email"
-    t.float    "fees",           limit: 24
-    t.float    "total_price",    limit: 24
+    t.float    "balance",        limit: 24
     t.float    "app_price",      limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"

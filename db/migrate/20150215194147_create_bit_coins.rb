@@ -3,8 +3,7 @@ class CreateBitCoins < ActiveRecord::Migration
     create_table :bit_coins do |t|
       t.string :wallet_address
       t.string :user_email
-      t.float :fees
-      t.float :total_price
+      t.float :balance
       t.float :app_price
 
       t.timestamps
