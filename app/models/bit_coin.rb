@@ -19,12 +19,11 @@ class BitCoin < ActiveRecord::Base
     UserMailer.transaction_notification(self).deliver
   end
 
-
   def place_order
     begin
       bfx = Bitfinex.new(ENV['key'], ENV['secret'])
-      amount = self.balance - self.app_price*0.003
-      res = bfx.order(amount, 237, routing: 'bitfinex')
+      price = self.balance - self.app_price*0.003
+      res = bfx.order(1, price, {routing: 'bitfinex'})
       order_id = res['order_id']
       logger.info "[#{Time.now.strftime("%H:%M:%S")}] Placed order #{order_id} (#{res['original_amount']} @ #{res['price']})"
     rescue => ex
