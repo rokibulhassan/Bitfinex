@@ -26,7 +26,6 @@ class BitCoin < ActiveRecord::Base
       puts [balance, app_price, price]
       res = bfx.order(0.01, price, {routing: 'bitfinex'})
       order_id = res['order_id']
-      puts "[#{Time.now.strftime("%H:%M:%S")}] Placed order #{order_id} (#{res['original_amount']} @ #{res['price']})"
       logger.info "[#{Time.now.strftime("%H:%M:%S")}] Placed order #{order_id} (#{res['original_amount']} @ #{res['price']})"
     rescue => ex
       logger.info "Error::: #{ex}"
