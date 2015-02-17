@@ -1,8 +1,8 @@
 development: &dev
   key: "RU8itL9kzUnRxVEWqIwSHHonrDbtMNlMaIUjpcx3puA"
   secret: "NnZm1Uwa21qdM91wvnM1tgre15OriCIhF9466l0xlge"
-  #key = "GtTDzVL0hLFfsf6vjUMwNPdTkPjQRKQutdro9Dm1D76"
-  #secret = "CiHfOV0YGIGscVgCsy57OqOqW1ai5yUp8KGzdoSpTfq"
+#  key: "GtTDzVL0hLFfsf6vjUMwNPdTkPjQRKQutdro9Dm1D76"
+#  secret: "CiHfOV0YGIGscVgCsy57OqOqW1ai5yUp8KGzdoSpTfq"
 test:
   <<: *dev
 production:
