@@ -29,6 +29,5 @@ gem 'twitter-bootstrap-rails',
     :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git',
     :branch => "bootstrap3"
 
-#gem 'bitfinex', '~> 0.0.1'
 gem 'bitfinex', :git => 'git://github.com/jwilkins/bitfinex.git'
-
+gem 'figaro'

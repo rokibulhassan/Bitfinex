@@ -1,6 +1,5 @@
 class BitCoinsController < ApplicationController
   before_action :set_bit_coin, only: [:show, :edit, :update, :destroy]
-  # https://github.com/jwilkins/bitfinex
   # https://docs.google.com/document/d/1H6-DGErgDr-pC4m2xoh1v3mfNcDBiuq8s40fB5I35TY/edit
   # GET /bit_coins
   # GET /bit_coins.json
@@ -15,10 +14,7 @@ class BitCoinsController < ApplicationController
 
   # GET /bit_coins/new
   def new
-    @key = "GtTDzVL0hLFfsf6vjUMwNPdTkPjQRKQutdro9Dm1D76"
-    @secret = "CiHfOV0YGIGscVgCsy57OqOqW1ai5yUp8KGzdoSpTfq"
-
-    @ticker = Bitfinex.new(@key, @secret).ticker
+    @ticker = Bitfinex.new(ENV['key'], ENV['secret']).ticker
     @last_price = @ticker.last_price + @ticker.last_price * 0.003
     @last_update = (Time.now - @ticker.timestamp).round(3)
     @bit_coin = BitCoin.new(balance: 5)
@@ -32,14 +28,12 @@ class BitCoinsController < ApplicationController
   # POST /bit_coins.json
   def create
     @bit_coin = BitCoin.new(bit_coin_params)
-
     respond_to do |format|
-      if @bit_coin.save
+      begin
+        @bit_coin.save!
         format.html { redirect_to new_bit_coin_path, notice: 'Transaction completed successfully.' }
-        format.json { render action: 'show', status: :created, location: @bit_coin }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @bit_coin.errors, status: :unprocessable_entity }
+      rescue => ex
+        format.html { redirect_to new_bit_coin_path, alert: ex }
       end
     end
   end

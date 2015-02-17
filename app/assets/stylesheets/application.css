@@ -15,5 +15,14 @@
  */
 
 .main-container {
-    margin-top: 50px;
+    margin-top: 65px;
+}
+
+.preload {
+    width:100px;
+    height: 100px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 9999;
 }

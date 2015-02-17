@@ -67,6 +67,8 @@ GEM
     commonjs (0.2.7)
     erubis (2.7.0)
     execjs (2.3.0)
+    figaro (1.1.0)
+      thor (~> 0.14)
     hashie (3.4.0)
     hike (1.2.3)
     httparty (0.13.3)
@@ -171,6 +173,7 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.1.2)
   bitfinex!
   coffee-rails (~> 4.0.0)
+  figaro
   jbuilder (~> 1.2)
   jquery-rails
   less-rails

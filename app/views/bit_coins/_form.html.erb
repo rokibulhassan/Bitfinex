@@ -1,24 +1,41 @@
 <%= simple_form_for(@bit_coin, wrapper: :horizontal_form) do |f| %>
     <div class="form-inputs">
-      <h4>Amount</h4>
-      <%= f.input :amount_usd %>
-      <%= f.input :amount_bit_coin %>
+      <div class="panel panel-default">
+        <div class="panel-heading"><b>Amount</b></div>
+        <div class="panel-body">
+          <%= f.input :amount_usd %>
+          <%= f.input :amount_bit_coin %>
+          <%= f.input :balance %>
+        </div>
+      </div>
 
-      <%= f.input :balance %>
+      <div class="panel panel-default">
+        <div class="panel-heading"><b>Deposit To</b></div>
+        <div class="panel-body">
+          <%= f.input :wallet_address %>
+        </div>
+      </div>
 
-      <h4>Deposit To</h4>
-      <%= f.input :wallet_address %>
+      <div class="panel panel-default">
+        <div class="panel-heading"><b>Contact Me To</b></div>
+        <div class="panel-body">
+          <%= f.input :user_email %>
+        </div>
+      </div>
 
-      <h4>Contact Me To</h4>
-      <%= f.input :user_email %>
+      <div class="panel panel-default">
+        <div class="panel-heading"><b>Price</b></div>
+        <div class="panel-body">
+          <%= f.input :fees %>
+          <%= f.input :total_price %>
+        </div>
+      </div>
 
-      <%= f.input :fees %>
-      <%= f.input :total_price %>
       <%= f.hidden_field :app_price, value: @last_price %>
     </div>
 
-    <div class="form-actions">
-      <%= f.button :submit, 'Deposit USD' %>
+    <div class="form-actions text-center">
+      <%= f.button :submit, 'Deposit USD', class: 'btn btn-primary' %>
     </div>
 
     <p>The payment information will be emailed to you automatically</p>
@@ -47,6 +64,13 @@
             var total_price = usd_amount + fees;
             $('input#bit_coin_fees').val(fees);
             $('input#bit_coin_total_price').val(total_price);
+        });
+
+        $('form#new_bit_coin').submit(function () {
+            $(".preload").fadeIn(2000, function () {
+                $(".content").fadeOut(1000);
+            });
+            return true;
         });
     });
 
