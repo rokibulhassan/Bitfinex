@@ -70,6 +70,6 @@ class BitCoinsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def bit_coin_params
-    params.require(:bit_coin).permit(:wallet_address, :user_email, :fees, :total_price, :app_price, :amount_usd, :amount_bit_coin, :balance)
+    params.require(:bit_coin).permit(:wallet_address, :user_email, :fee, :total_price, :app_price, :usd_amount, :btc_amount, :balance)
   end
 end

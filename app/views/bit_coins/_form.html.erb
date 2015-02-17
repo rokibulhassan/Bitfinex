@@ -1,35 +1,13 @@
 <%= simple_form_for(@bit_coin, wrapper: :horizontal_form) do |f| %>
     <div class="form-inputs">
-      <div class="panel panel-default">
-        <div class="panel-heading"><b>Amount</b></div>
-        <div class="panel-body">
-          <%= f.input :amount_usd %>
-          <%= f.input :amount_bit_coin %>
-          <%= f.input :balance %>
-        </div>
-      </div>
+      <%= f.input :amount_usd %>
+      <%= f.input :amount_bit_coin %>
+      <%= f.input :balance %>
+      <%= f.input :wallet_address %>
 
-      <div class="panel panel-default">
-        <div class="panel-heading"><b>Deposit To</b></div>
-        <div class="panel-body">
-          <%= f.input :wallet_address %>
-        </div>
-      </div>
-
-      <div class="panel panel-default">
-        <div class="panel-heading"><b>Contact Me To</b></div>
-        <div class="panel-body">
-          <%= f.input :user_email %>
-        </div>
-      </div>
-
-      <div class="panel panel-default">
-        <div class="panel-heading"><b>Price</b></div>
-        <div class="panel-body">
-          <%= f.input :fees %>
-          <%= f.input :total_price %>
-        </div>
-      </div>
+      <%= f.input :user_email %>
+      <%= f.input :fees %>
+      <%= f.input :total_price %>
 
       <%= f.hidden_field :app_price, value: @last_price %>
     </div>
@@ -64,11 +42,6 @@
             var total_price = usd_amount + fees;
             $('input#bit_coin_fees').val(fees);
             $('input#bit_coin_total_price').val(total_price);
-        });
-
-        $('form#new_bit_coin').submit(function () {
-            $(".preload").fadeIn(2000);
-            return true;
         });
     });
 

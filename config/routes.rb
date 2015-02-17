@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :bit_coins
 
-  root 'bit_coins#index'
+  root 'bit_coins#new'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

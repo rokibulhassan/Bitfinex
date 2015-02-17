@@ -14,15 +14,14 @@
  *= require_self
  */
 
-.main-container {
-    margin-top: 65px;
+    .main-block {
+    text-align: center;
 }
 
-.preload {
-    width:100px;
-    height: 100px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    z-index: 9999;
+.main-block .button-group {
+    margin-top: 50px;
+}
+
+.buy-btc-block {
+    margin-top: 50px;
 }

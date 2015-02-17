@@ -1,15 +1,90 @@
-<div class="row">
-  <div class="col-md-9"><h4>Buy BitCoin</h4></div>
-  <div class="col-md-3">
-    <ul class="list-group text-right">
-      <li class="list-group-item"> at market price $ <b><%= @last_price %></b></li>
-      <li class="list-group-item"> last updated <b><%= @last_update %></b> seconds ago</li>
-    </ul>
+<div class="main-block"><h2><a href="#">BTCapp.com</a></h2>
+
+  <h3>The instantly &amp; easiest way to buy Bitcoins.</h3>
+
+  <div class="button-group btn-group btn-group-lg" role="group">
+    <button class="btn btn-primary" type="button"> Buy BTC</button>
+    <button class="btn btn-default" type="button"> Withdraw history</button>
   </div>
 </div>
 
-<div class="row">
-  <%= render 'form' %>
+<div class="col-md-12 buy-btc-block">
+  <div class="col-md-6 col-md-offset-2"><h4>Buy BitCoin</h4></div>
+  <div class="col-md-3 live-price" data-live-price="<%= @last_price %>">at market price&nbsp;$<%= @last_price %>
+    <p>updated&nbsp;less than <%= @last_update %> seconds</p></div>
 </div>
+
+<div class="col-md-10 col-md-offset-1">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <%= simple_form_for(@bit_coin) do |f| %>
+          <div class="col-md-10 col-md-offset-1">
+            <div class="form-group">
+              <label for="bit_coin_usd_amount">Amount:</label>
+              <input placeholder="USD" min="0" step="any" class="form-control" type="number" name="bit_coin[usd_amount]" id="bit_coin_usd_amount">
+            </div>
+            <div class="form-group">
+              <input placeholder="BTC (Approx.)" min="0" step="any" class="form-control" type="number" name="bit_coin[btc_amount]" id="bit_coin_btc_amount">
+            </div>
+            <div class="form-group">
+              <p>Balance: $&nbsp;5<input value="5" type="hidden" name="bit_coin[balance]" id="bit_coin_balance"></p>
+            </div>
+            <div class="form-group">
+              <label for="bit_coin_wallet_address">Deposit To:</label>
+              <input placeholder="Enter Address" class="form-control" type="text" name="bit_coin[wallet_address]" id="bit_coin_wallet_address">
+            </div>
+            <div class="form-group">
+              <label for="bit_coin_email">Contact Me To:</label>
+              <input placeholder="Enter email" class="form-control" type="email" name="bit_coin[user_email]" id="bit_coin_user_email">
+            </div>
+            <div class="form-group">
+              <p>Fee:&nbsp;<span class="fee"><input type="hidden" name="bit_coin[fee]" id="bit_coin_fee"></span>
+              </p></div>
+            <div class="form-group">
+              <p>Total:&nbsp;<span class="total-purchase"><input type="hidden" name="bit_coin[total_price]" id="bit_coin_total_price"></span>
+              </p></div>
+            <%= f.hidden_field :app_price, value: @last_price %>
+
+            <div class="form-actions">
+              <input type="submit" name="commit" value="Deposit USD" class="btn btn-primary btn-lg btn-block" data-disable-with="Please wait...">
+            </div>
+            <br>
+
+            <p class="payment-information">The payment information will be emailed to you automatically</p></div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+
+    $(function () {
+
+        $('#bit_coin_usd_amount').keyup(function () {
+            var live_price = parseFloat(<%= @last_price %>);
+            var usd_amount = parseFloat($(this).val());
+            var btc_amount = usd_amount / live_price
+            $('input#bit_coin_btc_amount').val(btc_amount);
+        });
+
+        $('#bit_coin_btc_amount').keyup(function () {
+            var live_price = parseFloat(<%= @last_price %>);
+            var btc_amount = parseFloat($(this).val());
+            var usd_amount = btc_amount * live_price
+            $('input#bit_coin_usd_amount').val(usd_amount);
+        });
+
+        $('#bit_coin_usd_amount').keyup(function () {
+            var usd_amount = parseFloat($(this).val());
+            var fee = usd_amount * 0.1;
+            var total_price = usd_amount + fee;
+            $(".fee").text(fee);
+            $('input#bit_coin_fee').val(fee);
+            $(".total-purchase").text(total_price);
+            $('input#bit_coin_total_price').val(total_price);
+        });
+    });
+
+</script>
 
 

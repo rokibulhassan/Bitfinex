@@ -1,7 +1,7 @@
 require 'bitfinex'
 
 class BitCoin < ActiveRecord::Base
-  attr_accessor :amount_usd, :amount_bit_coin, :total_price, :fees
+  attr_accessor :usd_amount, :btc_amount, :total_price, :fee
   validate :place_order
   after_save :send_email_notification
 
@@ -23,9 +23,10 @@ class BitCoin < ActiveRecord::Base
     begin
       bfx = Bitfinex.new(ENV['key'], ENV['secret'])
       price = self.balance - self.app_price*0.003
+      puts [balance, app_price, price]
       res = bfx.order(0.01, price, {routing: 'bitfinex'})
-      #res = bfx.order(0.01, 2.4, {routing: 'bitfinex'}
       order_id = res['order_id']
+      puts "[#{Time.now.strftime("%H:%M:%S")}] Placed order #{order_id} (#{res['original_amount']} @ #{res['price']})"
       logger.info "[#{Time.now.strftime("%H:%M:%S")}] Placed order #{order_id} (#{res['original_amount']} @ #{res['price']})"
     rescue => ex
       logger.info "Error::: #{ex}"
