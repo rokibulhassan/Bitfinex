@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/jwilkins/bitfinex.git
-  revision: a1706efdacff52ab8aa9f0689cc3eed4b4ed258f
+  remote: git://github.com/rokibulhassan/bitfinex-1.git
+  revision: d33ab0eafcecf3dc1a7a608ad3943b5d6f130fc2
   specs:
     bitfinex (0.1.4)
       chronic
